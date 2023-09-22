@@ -259,7 +259,7 @@ lookup_latest_tag() {
     # by date
     current_commit=$(git rev-parse HEAD)
     for tag in $(git tag --sort=-creatordate); do
-      if [ $(git rev-parse "$tag") = "$current_commit" ]; then
+      if [ "$(git rev-parse "$tag")" = "$current_commit" ]; then
         continue
       else
         echo "$tag"
