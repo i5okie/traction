@@ -248,7 +248,7 @@ install_chart_releaser() {
 
 lookup_latest_tag() {
   git fetch --tags >/dev/null 2>&1
-  latest_tag=$(git tag --sort=-creatordate | head -n 1)
+  latest_tag=$(git tag --sort=-creatordate | sed -n '2p')
 
   if [ -z "$latest_tag" ]; then
     # If no tags are found, return the initial commit hash
@@ -257,7 +257,6 @@ lookup_latest_tag() {
     echo "$latest_tag"
   fi
 }
-
 
 filter_charts() {
   while read -r chart; do
